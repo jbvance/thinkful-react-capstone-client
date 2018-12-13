@@ -78,7 +78,7 @@ code {
 .flex-outer li input:not([type='checkbox']),
 .flex-outer li textarea {
   padding: 15px;
-  border: none;
+  border: 1px solid #D5D5D5;
 }
 
 .flex-outer li button {
