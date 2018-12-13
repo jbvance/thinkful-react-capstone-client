@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class Signup extends Component {
+    onSubmit = (formProps) => {
+        console.log('FORM PROPS', formProps);
+        this.props.signup(formProps, () => {
+            //redirect user after authenticating
+            this.props.history.push('/profile');
+        });
+    };
+
     render() {
-        return (
-            <form>
-            <fieldset>
-                <label htmlFor="email">Email</label>
-            </fieldset>
-            <fieldset>
-                <label htmlFor="password">Password</label>
-            </fieldset>
-            </form>
+
+        // handleSubmit is provided to props by redux form
+        const { handleSubmit } = this.props;       
+        return (          
+            <div>
+                {this.props.errorMessage && <div className="alert alert-danger">{this.props.errorMessage}</div>}
+                <form onSubmit={handleSubmit(this.onSubmit)}>
+                <fieldset>
+                    <label htmlFor="email">Email</label>
+                    <Field 
+                        name="email"
+                        type="text"
+                        component="input"
+                        autoComplete="none"
+                    />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="password">Password</label>
+                    <Field 
+                        name="password"
+                        type="password"
+                        component="input"
+                        autoComplete="none"
+                    />
+                </fieldset>                
+                <button>Sign up</button>
+                </form>
+            </div>
         );
     }
 }
 
-export default Signup;
+const mapStateToProps = state => ({
+    errorMessage: state.auth.errorMessage
+});
+
+export default compose (
+    connect(mapStateToProps, actions),
+    reduxForm({ form: 'signup' })
+)(Signup);

@@ -18,11 +18,7 @@ export default class Header extends Component {
                     </li>            
                     <li><Link to="/signout" className="nav-links">Sign Out</Link>              
                     </li>
-                    <li>
-                        <span className="nav-links">
-                            Add Category
-                        </span>
-                    </li>
+                    <li><Link to="/profile" className="nav-links">Start</Link></li>
                 </ul>        
             </nav>
         );

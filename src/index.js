@@ -2,21 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import Welcome from './components/welcome';
 import Signup from './components/auth/signup';
+import Profile from './components/profile';
 import reducers from './reducers';
 
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 
-const store = createStore(
-    reducers, {}
- +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+// required for redux devtools in browser
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, {
+    // initial state
+    auth: { authenticated: localStorage.getItem('authToken') }
+}, composeEnhancers(
+    applyMiddleware(reduxThunk)
+  ));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -24,6 +30,7 @@ ReactDOM.render(
             <App>
                 <Route path="/" exact component={Welcome} />
                 <Route path="/signup" exact component={Signup} />
+                <Route path="/profile" exact component={Profile} />
             </App>
         </BrowserRouter>
     </Provider>
