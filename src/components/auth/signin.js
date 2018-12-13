@@ -1,59 +1,21 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { compose } from 'redux';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { signin } from '../../actions/index';
+import AuthForm from './auth-form';
 
-export class Signin extends Component {
-    componentDidMount() {
-        this.props.setAuthError('');
+export class Signin extends React.Component {
+    redirect() {
+        this.props.history.push('/profile');
     }
 
-    onSubmit = (formProps) => {        
-        this.props.signin(formProps, () => {
-            //redirect user after authenticating
-            this.props.history.push('/profile');
-        });
-    };
-
-    render() {
-
-        // handleSubmit is provided to props by redux form
-        const { handleSubmit } = this.props;       
-        return (          
-            <div>
-                {this.props.errorMessage && <div className="alert alert-danger">{this.props.errorMessage}</div>}
-                <form onSubmit={handleSubmit(this.onSubmit)}>
-                <fieldset>
-                    <label htmlFor="email">Email</label>
-                    <Field 
-                        name="email"
-                        type="text"
-                        component="input"
-                        autoComplete="none"
-                    />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="password">Password</label>
-                    <Field 
-                        name="password"
-                        type="password"
-                        component="input"
-                        autoComplete="none"
-                    />
-                </fieldset>                
-                <button>Sign in</button>
-                </form>
-            </div>
-        );
+    render() {       
+        return (
+            <AuthForm onSubmit={this.props.signin} redirect={() => this.redirect()}/>
+        )
     }
 }
 
-const mapStateToProps = state => ({
-    errorMessage: state.auth.errorMessage
-});
-
-export default compose (
-    connect(mapStateToProps, actions),
-    reduxForm({ form: 'signin' })
+export default connect(
+    null,
+    { signin }
 )(Signin);

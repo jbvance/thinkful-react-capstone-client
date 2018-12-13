@@ -10,9 +10,9 @@ export const signup = (formProps, callback) => async dispatch => {
         const response = await axios.post(`${API_BASE_URL}/users`, {
             email, 
             password
-        });         
+        });                 
         dispatch({ type: AUTH_USER, payload: response.data.authToken });
-        localStorage.setItem('authToken', response.data.authToken);
+        localStorage.setItem('authToken', response.data.authToken);       
         callback();
     } catch(err) {       
        if (err.response.data) {                   
