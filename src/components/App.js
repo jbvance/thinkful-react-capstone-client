@@ -6,7 +6,9 @@ export default ({ children }) => {
   return (
     <div>
       <Header />
-      {children}
+      <div className="container">
+        {children}
+      </div>      
     </div>
   );
 }

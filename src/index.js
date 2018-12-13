@@ -5,15 +5,19 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
+import reducers from './reducers';
 import App from './components/App';
 import Welcome from './components/welcome';
 import Signup from './components/auth/signup';
 import Profile from './components/profile';
-import reducers from './reducers';
+import Signout from './components/auth/signout';
+import Signin from './components/auth/signin';
 
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
+
+console.log("ENVIRONMENT", process.env.NODE_ENV);
 
 // required for redux devtools in browser
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -31,6 +35,8 @@ ReactDOM.render(
                 <Route path="/" exact component={Welcome} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/profile" exact component={Profile} />
+                <Route path="/signout" exact component={Signout} />
+                <Route path="/signin" exact component={Signin} />
             </App>
         </BrowserRouter>
     </Provider>

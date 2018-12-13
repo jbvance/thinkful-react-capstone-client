@@ -4,7 +4,16 @@ import requireAuth from './requireAuth';
 class Profile extends Component {
     render() {
         return (
-            <div>This is the profile page</div>
+            <div>
+                <form>
+                    <ul className="flex-outer">
+                        <li>
+                            <label htmlFor="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name here" />
+                        </li>
+                    </ul>
+                </form>
+            </div>
         );
     }
 }

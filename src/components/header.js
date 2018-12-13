@@ -1,7 +1,32 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class Header extends Component {
+export class Header extends Component {
+
+    renderLinks() {
+        if (this.props.authenticated) {
+            return (
+                <div>
+                    <li><Link to="/signout" className="nav-links">Sign Out</Link></li>
+                    <li><Link to="/profile" className="nav-links">Start</Link></li>
+                </div>
+               
+            );
+        } else {
+            return (
+                <div>
+                    <li>
+                        <Link to="/signup" className="nav-links">Signup</Link>
+                    </li>
+                    <li>
+                        <Link to="/signin" className="nav-links">Sign In</Link>
+                    </li>    
+                </div>
+            );
+        }
+    }
+
     render() {
         return (
             <nav className="navbar">
@@ -9,18 +34,16 @@ export default class Header extends Component {
                     <i className="fas fa-bars"></i>
                 </span>
                 <Link to="/" className="logo">LegalDox</Link>
-                <ul className="main-nav">           
-                    <li>
-                        <Link to="/signup" className="nav-links">Signup</Link>
-                    </li>
-                    <li>
-                        <Link to="/signin" className="nav-links">Sign In</Link>
-                    </li>            
-                    <li><Link to="/signout" className="nav-links">Sign Out</Link>              
-                    </li>
-                    <li><Link to="/profile" className="nav-links">Start</Link></li>
+                <ul className="main-nav">                              
+                    {this.renderLinks()}                           
                 </ul>        
             </nav>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    authenticated: state.auth.authenticated
+});
+
+export default connect(mapStateToProps)(Header);

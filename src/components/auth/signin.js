@@ -4,14 +4,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-class Signup extends Component {
-
+export class Signin extends Component {
     componentDidMount() {
         this.props.setAuthError('');
     }
 
     onSubmit = (formProps) => {        
-        this.props.signup(formProps, () => {
+        this.props.signin(formProps, () => {
             //redirect user after authenticating
             this.props.history.push('/profile');
         });
@@ -43,7 +42,7 @@ class Signup extends Component {
                         autoComplete="none"
                     />
                 </fieldset>                
-                <button>Sign up</button>
+                <button>Sign in</button>
                 </form>
             </div>
         );
@@ -56,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default compose (
     connect(mapStateToProps, actions),
-    reduxForm({ form: 'signup' })
-)(Signup);
+    reduxForm({ form: 'signin' })
+)(Signin);
