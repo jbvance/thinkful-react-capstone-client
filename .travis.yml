@@ -2,6 +2,13 @@ language: node_js
 node_js: node
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=true
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: JMwN8fFLfbkoQ6ferkCJzZn6HvsywYj7DNmM59V6WXldvLwQcdQsmCsrb2M5JxE4hHqaqLepD0FV3Un/QsnazuY4lyNOeXEMXq9EbERixpTnDvUtBsF06fkbt7XJCgvi6GjO+hoUKTwogPmxfQnfPPDohTgsIr5DIYtpy9oKhFaj9y6Jd4rvD9O0+f9q+JAoybgjxYh00D4MM2+ZnxG6dJULZjSOAWs4IKPVtVN+w8iWD0g/UM600nxJtyr3HOtVu1ISiE2ic8QeQVr3VFrY+YIhusmu8txuXxwlnq8IKJZhAPERPiz8Pow5AgH59gXy+EqUE3UIw2uDgv0fPfjCN0FcwDj08s+Kxk/IICSHqn1KDCVqrCWjkmWtusiYPIf0q6EzVXK09PT+RtK/F7c8TyUU4HODiRFPG3INEzghvn4FAhT1/3bdV7QhsWJ1RaO89oaky9ZVYWdmSrGz8f6p3nS8OgELDZo7KueAeWoT+uOIdJ2szI4n1Pug4eT+I/1uGOOhNtuM17//iJckBExaTEAuaneJhAISdl/C5iVXlWQz/YuMZsOhJrfIGd+ceAlEE4o1EyVioYL0K7//DWcJa3fgBDU59EXwBW4DpKwQMXA7UfkqQtZ0dytjRARFqnfsOExIwI5J/offj3nZn3DFUm08YIZQnJczIehk7U2tPhs=
+  app: salty-escarpment-43706
+  on:
+    repo: jbvance/thinkful-react-capstone-client
