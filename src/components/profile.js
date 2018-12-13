@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import requireAuth from './requireAuth';
 
-class Profile extends Component {
+export class Profile extends Component {
     render() {
         return (
             <div>

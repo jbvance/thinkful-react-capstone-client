@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-class Signup extends Component {
+export class Signup extends Component {
 
     componentDidMount() {
         this.props.setAuthError('');
