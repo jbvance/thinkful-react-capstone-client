@@ -187,6 +187,19 @@ input[type=submit]:hover {
   text-align: center;
 }
 
+.btn-wizard {
+  width: 120px;
+}
+
+.wizard-btn-row {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 768px) {
 
   .master-container {

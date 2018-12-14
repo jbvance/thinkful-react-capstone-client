@@ -19,10 +19,17 @@ const DpoaProfile = props => {
         component={renderField}
         label="Last Name"
       />
-      <div>
-        <button className="btn btn-submit" type="submit" className="next">
+      <Field
+        name="address"
+        type="text"
+        component={renderField}
+        label="Address"
+        placeholder="Full address (including city, state, zip)"
+      />
+      <div className="wizard-btn-row">
+        <button className="next btn btn-submit btn-wizard" type="submit">
           Next
-        </button>
+        </button>       
       </div>
     </form>
   )
