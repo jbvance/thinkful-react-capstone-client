@@ -5,6 +5,7 @@ export const renderField = ({
     input,
     label,
     type,
+    placeholder,
     meta: { touched, error, warning }
   }) => {                   
       return (    
@@ -14,7 +15,7 @@ export const renderField = ({
                     <label htmlFor={id}>{label}</label>
                 </div>
                 <div className="col-9">
-                    <input {...input } placeholder={label} type={type} />  
+                    <input {...input } placeholder={placeholder || label} type={type} />  
                 </div>
             </div>                
             {touched &&
