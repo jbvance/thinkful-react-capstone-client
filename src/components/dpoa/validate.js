@@ -22,6 +22,10 @@ const validate = values => {
         if (!agent || !agent.lastName) {
           agentErrors.lastName = 'Last name is equired'
           agentsArrayErrors[agentIndex] = agentErrors
+        }
+        if (!agent || !agent.address) {
+          agentErrors.address = 'Address is equired'
+          agentsArrayErrors[agentIndex] = agentErrors
         }        
       })
       if (agentsArrayErrors.length) {

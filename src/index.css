@@ -51,6 +51,24 @@ label {
   cursor: pointer;
 }
 
+.btn.previous:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f04a";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight:900;
+}
+
+.btn.next:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f04e";
+  display: inline-block;
+  padding-left: 5px;
+  vertical-align: middle;
+  font-weight:900;
+}
+
 /* input[type=submit]:hover {
   background-color: #45a049;
 } */
@@ -67,7 +85,7 @@ div.alert-danger:before, span.alert-danger:before {
 /* Responsive layout for grid */
  @media screen and (max-width: 600px) {
  
-  .btn-submit {
+  .btn-submit, .btn {
     width: 100%;
     margin-top: 15px;
   }
@@ -193,15 +211,51 @@ div.alert-danger:before, span.alert-danger:before {
   text-align: center;
 }
 
+form button {
+  cursor: pointer;
+}
+
 form ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+form ul li {
+  margin: 0;
+  padding: 15px;
+  background-image: linear-gradient(#efefef, #eee);
+  clear: both;
+}
+
 form ul li:first-child {
   background-image: none;
   text-align: center;
+}
+
+form ul li:nth-child(odd) {
+  background-image: linear-gradient(#dfdfdf, #ddd);
+}
+
+form ul li > button {
+  float: right;
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: white;
+  background-image: linear-gradient(#e27c79, #c9302c);
+  border: 1px solid #c9302c;
+  padding: 5px 8px;
+}
+form ul li > button:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f1f8";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight:900;
 }
 
 .btn-wizard { 
@@ -214,7 +268,7 @@ form ul li:first-child {
 
 .btn-wizard--add-agent { 
   width: 160px;
-  height: 60px;
+  height: 50px;
   margin: 20px;
 }
 

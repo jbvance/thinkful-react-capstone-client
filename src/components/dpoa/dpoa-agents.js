@@ -9,11 +9,11 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
     <li>
       <div>
       <button type="button" className="btn btn-wizard btn-wizard--add-agent" onClick={() => fields.push({})}>
-        Add Agent
+        <span><i class="fas fa-plus-circle"></i> Add Agent</span>
       </button>
       </div>
       <div>
-        {submitFailed && error && <span class="alert alert-danger">{error}</span>}
+        {submitFailed && error && <span className="alert alert-danger">{error}</span>}
       </div>
      
     </li>
@@ -36,7 +36,14 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
           type="text"
           component={renderField}
           label="Last Name"
-        />       
+        />      
+        <Field
+          name={`${agent}.address`}
+          type="text"
+          component={renderField}
+          label="Address"
+          placeholder="Full address (including city, state, zip)"
+        />  
       </li>
     ))}
   </ul>
@@ -49,7 +56,7 @@ const DpoaAgents = props => {
     <FieldArray name="agents" component={renderAgents} />
     <div className="wizard-btn-row">
       <button onClick={props.previousPage} className="btn btn-wizard previous">Previous</button>
-      <button type="submit" disabled={submitting} className="btn btn-wizard">Next</button>      
+      <button type="submit" disabled={submitting} className="btn btn-wizard next">Next</button>      
     </div>
   </form>
   )
