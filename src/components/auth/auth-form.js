@@ -13,8 +13,8 @@ export class AuthForm extends Component {
     onSubmit = (formProps) => {        
         this.props.onSubmit(formProps, () => {                          
             this.props.redirect();                       
-        });
-    };     
+        });        
+    };         
 
     renderField = ({   
         id,     
@@ -23,15 +23,23 @@ export class AuthForm extends Component {
         type,
         meta: { touched, error, warning }
       }) => {                   
-          return (           
-            <li>
-                <label htmlFor={id}>{label}</label>
-                <input {...input } placeholder={label} type={type} />  
+          return (    
+            <div>       
+                <div className="row">
+                    <div className="col-3 form-label">
+                        <label htmlFor={id}>{label}</label>
+                    </div>
+                    <div className="col-9">
+                        <input {...input } placeholder={label} type={type} />  
+                    </div>
+                </div>                
                 {touched &&
-                    ((error && <span>{error}</span>) ||
-                      (warning && <span>{warning}</span>))}            
-            </li>  
-                                                               
+                    (error && 
+                        <div className="row">                                                       
+                            <div className="alert alert-danger alert-center"><span class="fas fa-exclamation-circle"></span> {error}</div>
+                        </div>)}            
+    
+            </div>                                                   
         )};
                   
                         
@@ -39,12 +47,12 @@ export class AuthForm extends Component {
     render() {
 
         // handleSubmit is provided to props by redux form
-        const { handleSubmit } = this.props;           
-        return (          
-            <div>                
+        const { handleSubmit } = this.props;                 
+        return (                      
+            <div>
+                <h1 className="title-header">{this.props.title}</h1>                  
                 {this.props.errorMessage && <div className="alert alert-danger">{this.props.errorMessage}</div>}
-                <form onSubmit={handleSubmit(this.onSubmit)}>
-                <ul className="flex-outer">
+                <form onSubmit={handleSubmit(this.onSubmit)}>                
                     <Field 
                         name="email"
                         id="email"
@@ -62,18 +70,18 @@ export class AuthForm extends Component {
                             component={this.renderField}
                             autoComplete="none"
                         />                                                    
-                    <li>
-                        <button className="btn">Sign up</button>
-                    </li>
-                </ul>             
-                
+                    <div class="row">
+                        <div class="col-100">
+                            <button className="btn btn-submit">Sign up</button>
+                        </div>                            
+                    </div>                                        
                 </form>
             </div>
         );
     }
 }
 
-const validate = values => {   
+const validate = values => {       
     const errors = {};
     if (!values.email) {
       errors.email = 'Email is Required'
@@ -82,15 +90,14 @@ const validate = values => {
     }
     if (!values.password) {
         errors.password = 'Password is Required'
-    }
-    //console.log('ERRORS', errors);
+    }    
     return errors;
 }
 
     
 
 const mapStateToProps = state => ({
-    errorMessage: state.auth.errorMessage
+    errorMessage: state.auth.errorMessage,    
 });
 
 
@@ -98,7 +105,7 @@ const mapStateToProps = state => ({
 export default compose (
     connect(mapStateToProps, { setAuthError }),
     reduxForm({ 
-        form: 'signup',
-        validate  
+        form: 'authForm',
+        validate,        
      })
 )(AuthForm);

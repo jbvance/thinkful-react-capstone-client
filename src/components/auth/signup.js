@@ -10,7 +10,7 @@ export class Signup extends React.Component {
 
     render() {        
         return (
-            <AuthForm onSubmit={this.props.signup} redirect={() => this.redirect()}/>
+            <AuthForm onSubmit={this.props.signup} title="Sign Up" redirect={() => this.redirect()}/>
         )
     }
 }

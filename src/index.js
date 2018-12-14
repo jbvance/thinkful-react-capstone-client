@@ -15,7 +15,9 @@ import Signin from './components/auth/signin';
 
 import * as serviceWorker from './serviceWorker';
 
+import './reset.css';
 import './index.css';
+import './grid.css';
 
 console.log("ENVIRONMENT", process.env.NODE_ENV);
 
@@ -36,7 +38,7 @@ ReactDOM.render(
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/profile" exact component={Profile} />
                 <Route path="/signout" exact component={Signout} />
-                <Route path="/signin" exact component={Signin} />
+                <Route path="/signin" exact component={Signin} />              
             </App>
         </BrowserRouter>
     </Provider>
