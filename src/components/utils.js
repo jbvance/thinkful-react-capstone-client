@@ -20,7 +20,7 @@ export const renderField = ({
             {touched &&
                 (error && 
                     <div className="row">                                                       
-                        <div className="alert alert-danger alert-center"><span className="fas fa-exclamation-circle"></span> {error}</div>
+                        <div className="alert alert-danger alert-center"> {error}</div>
                     </div>)}            
 
         </div>                                                   

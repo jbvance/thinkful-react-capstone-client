@@ -1,31 +1,57 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import validate from './validate';
 import  { renderField }  from '../utils';
 
-const DpoaAgents = props => {
-  const { handleSubmit } = props
-  return (     
-    <form onSubmit={handleSubmit}>
-      <h1>Agents</h1>
-      <Field
-        name="firstName"
-        type="text"
-        component={renderField}
-        label="First Name"
-      />
-      <Field
-        name="lastName"
-        type="text"
-        component={renderField}
-        label="Last Name"
-      />
+
+const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
+  <ul>
+    <li>
       <div>
-        <button type="submit" className="next">
-          Next
-        </button>
+      <button type="button" className="btn btn-wizard btn-wizard--add-agent" onClick={() => fields.push({})}>
+        Add Agent
+      </button>
       </div>
-    </form>
+      <div>
+        {submitFailed && error && <span class="alert alert-danger">{error}</span>}
+      </div>
+     
+    </li>
+    {fields.map((agent, index) => (
+      <li key={index}>
+        <button
+          type="button"
+          title="Remove Agent"
+          onClick={() => fields.remove(index)}
+        />
+        <h4>Agent No. {index + 1}</h4>
+        <Field
+          name={`${agent}.firstName`}
+          type="text"
+          component={renderField}
+          label="First Name"
+        />
+        <Field
+          name={`${agent}.lastName`}
+          type="text"
+          component={renderField}
+          label="Last Name"
+        />       
+      </li>
+    ))}
+  </ul>
+)
+
+const DpoaAgents = props => {
+  const { handleSubmit, submitting } = props
+  return (     
+    <form onSubmit={handleSubmit}>     
+    <FieldArray name="agents" component={renderAgents} />
+    <div className="wizard-btn-row">
+      <button onClick={props.previousPage} className="btn btn-wizard previous">Previous</button>
+      <button type="submit" disabled={submitting} className="btn btn-wizard">Next</button>      
+    </div>
+  </form>
   )
 }
 
