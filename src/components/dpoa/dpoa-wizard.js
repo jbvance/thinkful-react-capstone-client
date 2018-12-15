@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types'
 import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
+import { API_BASE_URL } from '../../config';
 
-class DpoaWizard extends Component {
+const token = localStorage.getItem('authToken');
+axios.defaults.headers.post['authorization'] = `Bearer ${token}`;
+
+export class DpoaWizard extends Component {
   constructor(props) {
     super(props)
     this.nextPage = this.nextPage.bind(this)
     this.previousPage = this.previousPage.bind(this)
     this.state = {
-      page: 1,
-      finalResult: {}
+      page: 1,     
     }
   }
   nextPage() {
@@ -22,26 +26,26 @@ class DpoaWizard extends Component {
     this.setState({ page: this.state.page - 1 })
   }
 
-  setFinalResult(result) {
-    this.setState({ finalResult: result });
-  }
-  
-sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-  
-showResults = async (values) => {
-  await this.sleep(500); // simulate server latency
-  window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-  this.setFinalResult({
-    status: 'success',
-    text: 'Document successfully processed'
+makeDoc(values) { 
+  let responseStatus = '';  
+  axios.post(`${API_BASE_URL}/docx/makedoc`, {
+      body: values     
   })
-  this.props.history.push('/');
-};
+      .then(function (response) {
+        console.log('RESPONSE', response);
+          console.log(response.data.message);
+          responseStatus = response.data.message;
+      })
+      .catch(function (error) {
+          console.error('ERROR', error);
+          responseStatus = error.message;
+      });
+  window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+}
 
   render() {
     //const { onSubmit } = this.props;
-    const onSubmit = this.showResults;
+    const onSubmit = this.makeDoc;
     const { page } = this.state
     return (
       <div>
@@ -59,11 +63,7 @@ showResults = async (values) => {
             onSubmit={onSubmit}
           />
         )}
-        
-        {this.state.finalResult && 
-          <div>
-            <h2>{this.state.finalResult.text}</h2>
-          </div>}      
+                   
       </div>
      
     )
