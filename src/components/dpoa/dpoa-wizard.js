@@ -10,23 +10,20 @@ const token = localStorage.getItem('authToken');
 axios.defaults.headers.post['authorization'] = `Bearer ${token}`;
 
 export class DpoaWizard extends Component {
-  constructor(props) {
-    super(props)
-    this.nextPage = this.nextPage.bind(this)
-    this.previousPage = this.previousPage.bind(this)
-    this.state = {
-      page: 1,     
-    }
-  }
-  nextPage() {
+    
+  state = {
+    page: 1
+  };
+
+  nextPage = () => {
     this.setState({ page: this.state.page + 1 })
   }
 
-  previousPage() {
+  previousPage = () => {
     this.setState({ page: this.state.page - 1 })
   }
 
-makeDoc(values) { 
+makeDoc = (values) => { 
   let responseStatus = '';  
   axios.post(`${API_BASE_URL}/docx/makedoc`, {
       body: values     
@@ -40,11 +37,11 @@ makeDoc(values) {
           console.error('ERROR', error);
           responseStatus = error.message;
       });
-  window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+  this.props.history.push('/');
+  //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
 }
 
-  render() {
-    //const { onSubmit } = this.props;
+  render() {   
     const onSubmit = this.makeDoc;
     const { page } = this.state
     return (
