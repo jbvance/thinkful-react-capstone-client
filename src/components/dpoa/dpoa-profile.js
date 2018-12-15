@@ -8,17 +8,12 @@ const DpoaProfile = props => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        name="firstName"
+        name="fullName"
         type="text"
         component={renderField}
-        label="First Name"
-      />
-      <Field
-        name="lastName"
-        type="text"
-        component={renderField}
-        label="Last Name"
-      />
+        label="Full Name"
+        placeholder="Full legal name, including middle name or inintial (if any)"
+      />      
       <Field
         name="address"
         type="text"

@@ -9,7 +9,7 @@ export class Header extends Component {
             return (
                 <div>
                     <li><Link to="/signout" className="nav-links">Sign Out</Link></li>
-                    <li><Link to="/profile" className="nav-links">Start</Link></li>
+                    <li><Link to="/start" className="nav-links">Start</Link></li>
                 </div>
                
             );

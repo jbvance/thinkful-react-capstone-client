@@ -1,11 +1,8 @@
 const validate = values => {
     const errors = {}
-    if (!values.firstName) {
-      errors.firstName = 'First name is required'
-    }
-    if (!values.lastName) {
-      errors.lastName = 'Last name is required'
-    }
+    if (!values.fullName) {
+      errors.fullName = 'Full name is required'
+    }    
     if (!values.address) {
       errors.address = 'Address is required'
     }
@@ -15,14 +12,10 @@ const validate = values => {
       const agentsArrayErrors = []
       values.agents.forEach((agent, agentIndex) => {
         const agentErrors = {}
-        if (!agent || !agent.firstName) {
-          agentErrors.firstName = 'First name is required'
+        if (!agent || !agent.fullName) {
+          agentErrors.fullName = 'Full name is required'
           agentsArrayErrors[agentIndex] = agentErrors
-        }
-        if (!agent || !agent.lastName) {
-          agentErrors.lastName = 'Last name is equired'
-          agentsArrayErrors[agentIndex] = agentErrors
-        }
+        }       
         if (!agent || !agent.address) {
           agentErrors.address = 'Address is equired'
           agentsArrayErrors[agentIndex] = agentErrors

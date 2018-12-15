@@ -26,17 +26,12 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
         />
         <h4>Agent No. {index + 1}</h4>
         <Field
-          name={`${agent}.firstName`}
+          name={`${agent}.fullName`}
           type="text"
           component={renderField}
-          label="First Name"
-        />
-        <Field
-          name={`${agent}.lastName`}
-          type="text"
-          component={renderField}
-          label="Last Name"
-        />      
+          label="Full Name"
+          placeholder="Enther the agent's full legal name"
+        />          
         <Field
           name={`${agent}.address`}
           type="text"
