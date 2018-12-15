@@ -5,7 +5,7 @@ import validate from './validate';
 const EffectiveNow = props => {
     const { handleSubmit, submitting } = props
     return (     
-      <form onSubmit={handleSubmit}>     
+      <form className="card" onSubmit={handleSubmit}>     
       <div>
         <label>When should this document become effective?</label>
         <div>

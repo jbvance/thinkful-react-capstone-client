@@ -6,7 +6,7 @@ import { renderField } from '../utils';
 const DpoaProfile = props => {
   const { handleSubmit } = props
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="card" onSubmit={handleSubmit}>
       <Field
         name="fullName"
         type="text"

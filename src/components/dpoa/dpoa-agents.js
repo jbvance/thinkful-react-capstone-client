@@ -47,7 +47,7 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
 const DpoaAgents = props => {
   const { handleSubmit, submitting } = props
   return (     
-    <form onSubmit={handleSubmit}>     
+    <form className="card" onSubmit={handleSubmit}>     
     <FieldArray name="agents" component={renderAgents} />
     <div className="wizard-btn-row">
       <button onClick={props.previousPage} className="btn btn-wizard previous">Previous</button>

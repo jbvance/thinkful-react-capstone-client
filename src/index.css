@@ -73,6 +73,18 @@ label {
   background-color: #45a049;
 } */
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  max-width: 700px;
+  margin: 0 auto;
+ 
+}
+
+form.card {
+  padding: 40px;
+}
+
 div.alert-danger:before, span.alert-danger:before {
   font-family: "Font Awesome 5 Free";
   content: "\f06a";
@@ -81,15 +93,6 @@ div.alert-danger:before, span.alert-danger:before {
   vertical-align: middle;
   font-weight:900;
 }
-
-/* Responsive layout for grid */
- @media screen and (max-width: 600px) {
- 
-  .btn-submit, .btn {
-    width: 100%;
-    margin-top: 15px;
-  }
-} 
 
 .navbar {
   font-size: 18px;
@@ -326,3 +329,12 @@ form ul li > button:before {
     cursor: pointer;
   }
 } /* END MEDIA QUERY */
+
+/* Responsive layout for grid */
+@media screen and (max-width: 600px) {
+ 
+  .btn, .btn-submit, .btn-wizard {
+    width: 100%;
+    margin-top: 15px;
+  }
+} 
