@@ -63,7 +63,7 @@ export const setAuthError = (value) => ({
 
 export const makeDoc = (values, callback) => async dispatch => {  
     try {
-        const response = await axios.post(`${API_BASE_URL}/docx/makedoc`, {
+        const response = await axios.post(`${API_BASE_URL}/docx`, {
             body: values     
         });
         console.log(response.data.message);
