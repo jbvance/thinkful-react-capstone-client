@@ -14,7 +14,6 @@ import Signout from './components/auth/signout';
 import Signin from './components/auth/signin';
 import DpoaWizard from './components/dpoa/dpoa-wizard';
 import RequireAuth from './components/requireAuth';
-import FieldArray from './components/dpoa/field-array';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -42,8 +41,7 @@ ReactDOM.render(
                 <Route path="/profile" exact component={Profile} />
                 <Route path="/signout" exact component={Signout} />
                 <Route path="/signin" exact component={Signin} /> 
-                <Route path="/start" exact component={RequireAuth(DpoaWizard)} />     
-                <Route path="/fa" exact component={FieldArray} />              
+                <Route path="/start" exact component={RequireAuth(DpoaWizard)} />                            
             </App>
         </BrowserRouter>
     </Provider>

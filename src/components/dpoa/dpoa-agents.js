@@ -9,7 +9,7 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
     <li>
       <div>
       <button type="button" className="btn btn-wizard btn-wizard--add-agent" onClick={() => fields.push({})}>
-        <span><i class="fas fa-plus-circle"></i> Add Agent</span>
+        <span><i className="fas fa-plus-circle"></i> Add Agent</span>
       </button>
       </div>
       <div>

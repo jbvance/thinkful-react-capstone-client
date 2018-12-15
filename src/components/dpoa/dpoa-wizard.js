@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
-//import WizardFormThirdPage from './WizardFormThirdPage'
+import EffectiveNow from './effective-now';
 
 class DpoaWizard extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ class DpoaWizard extends Component {
     this.nextPage = this.nextPage.bind(this)
     this.previousPage = this.previousPage.bind(this)
     this.state = {
-      page: 1
+      page: 1,
+      finalResult: {}
     }
   }
   nextPage() {
@@ -21,8 +22,26 @@ class DpoaWizard extends Component {
     this.setState({ page: this.state.page - 1 })
   }
 
+  setFinalResult(result) {
+    this.setState({ finalResult: result });
+  }
+  
+sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  
+showResults = async (values) => {
+  await this.sleep(500); // simulate server latency
+  window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+  this.setFinalResult({
+    status: 'success',
+    text: 'Document successfully processed'
+  })
+  this.props.history.push('/');
+};
+
   render() {
-    const { onSubmit } = this.props
+    //const { onSubmit } = this.props;
+    const onSubmit = this.showResults;
     const { page } = this.state
     return (
       <div>
@@ -33,20 +52,26 @@ class DpoaWizard extends Component {
             onSubmit={this.nextPage}
           />
         )}
-        {/*}
+        
         {page === 3 && (
-          <WizardFormThirdPage
+          <EffectiveNow
             previousPage={this.previousPage}
             onSubmit={onSubmit}
           />
-        )}*/}
+        )}
+        
+        {this.state.finalResult && 
+          <div>
+            <h2>{this.state.finalResult.text}</h2>
+          </div>}      
       </div>
+     
     )
   }
 }
 
-DpoaWizard.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}
+// DpoaWizard.propTypes = {
+//   onSubmit: PropTypes.func.isRequired
+// }
 
 export default DpoaWizard
