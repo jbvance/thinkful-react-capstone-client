@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types'
 import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
+import { makeDoc } from '../../actions/index';
 import { API_BASE_URL } from '../../config';
 
 const token = localStorage.getItem('authToken');
@@ -23,26 +25,17 @@ export class DpoaWizard extends Component {
     this.setState({ page: this.state.page - 1 })
   }
 
-makeDoc = (values) => { 
-  let responseStatus = '';  
-  axios.post(`${API_BASE_URL}/docx/makedoc`, {
-      body: values     
-  })
-      .then(function (response) {
-        console.log('RESPONSE', response);
-          console.log(response.data.message);
-          responseStatus = response.data.message;
-      })
-      .catch(function (error) {
-          console.error('ERROR', error);
-          responseStatus = error.message;
-      });
-  this.props.history.push('/');
-  //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+sendDoc = (values) => { 
+  this.props.makeDoc(values, () => {
+    //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+    this.props.history.push('/');
+  });
+ 
+  
 }
 
   render() {   
-    const onSubmit = this.makeDoc;
+    const onSubmit = this.sendDoc;   
     const { page } = this.state
     return (
       <div>
@@ -67,8 +60,5 @@ makeDoc = (values) => {
   }
 }
 
-// DpoaWizard.propTypes = {
-//   onSubmit: PropTypes.func.isRequired
-// }
 
-export default DpoaWizard
+export default connect(null, { makeDoc })(DpoaWizard);

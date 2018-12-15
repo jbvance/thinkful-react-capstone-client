@@ -16,9 +16,7 @@ export class AuthForm extends Component {
             this.props.redirect();                       
         });        
     };         
-
-                                         
-
+                                        
     render() {
 
         // handleSubmit is provided to props by redux form
