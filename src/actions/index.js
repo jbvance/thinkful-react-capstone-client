@@ -62,37 +62,14 @@ export const setAuthError = (value) => ({
 });
 
 export const makeDoc = (values, callback) => async dispatch => {  
-    try {
-        const response = await axios.post(`${API_BASE_URL}/docx`, {
-            body: values     
-        });
+    try {    
+        const response = await axios.post(`${API_BASE_URL}/docx`, { ...values });
         console.log(response.data.message);
         dispatch({ type: DOCX_STATUS, payload: response.data.message})        
         callback();    
     }    
     catch (error) {
         console.error('ERROR', error);
-        dispatch({ type: AUTH_ERROR, payload: error.message}) 
+        dispatch({ type: DOCX_ERROR, payload: error.message}) 
     }                      
   }
-
-
-// export const makeDoc = (values, callback) => async dispatch => {        
-//     let responseStatus = '';  
-//     axios.post(`${API_BASE_URL}/docx/makedoc`, {
-//         body: values     
-//     })
-//         .then(function (response) {
-//           //console.log('RESPONSE', response);
-//             console.log(response.data.message);
-//             dispatch({ type: DOCX_STATUS, payload: response.data.message})        
-//             callback();    
-//         })
-//         .catch(function (error) {
-//             console.error('ERROR', error);
-//             dispatch({ type: AUTH_ERROR, payload: error.message})            
-//         });    
-   
-//   }
-
- 
