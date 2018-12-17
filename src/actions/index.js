@@ -62,12 +62,16 @@ export const setAuthError = (value) => ({
 });
 
 export const makeDoc = (values, callback) => async (dispatch, getState) => {  
-    try {    
+    try {   
+        // clear status and error messsage for docx creation
+        dispatch({ type: DOCX_STATUS, payload: ''});
+        dispatch({ type: DOCX_ERROR, payload: ''});
+
         const token = getState().auth.authenticated;
         axios.defaults.headers.post['authorization'] = `Bearer ${token}`            
-        const response = await axios.post(`${API_BASE_URL}/dpoa`, { ...values }, );
+        const response = await axios.post(`${API_BASE_URL}/dpoa`, { ...values });
         console.log(response.data.message);
-        dispatch({ type: DOCX_STATUS, payload: response.data.message})        
+        dispatch({ type: DOCX_STATUS, payload: response.data.message});     
         callback();    
     }    
     catch (error) {
@@ -75,7 +79,6 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
         dispatch({ type: DOCX_ERROR, payload: error.message}) 
     }                      
 }
-
 
 export const getInitialDpoaData =  () => async (dispatch, getState) => {
     try {     

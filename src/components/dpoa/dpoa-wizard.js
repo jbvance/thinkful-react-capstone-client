@@ -33,7 +33,7 @@ export class DpoaWizard extends Component {
 sendDoc = (values) => {   
   this.props.makeDoc(values, () => {    
     //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-    this.props.history.push('/');
+    this.props.history.push('/results');
   });   
 };
 
