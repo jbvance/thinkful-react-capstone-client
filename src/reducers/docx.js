@@ -1,8 +1,9 @@
-import { DOCX_STATUS, DOCX_ERROR } from '../actions/types';
+import { DOCX_STATUS, DOCX_ERROR, INITIAL_DPOA } from '../actions/types';
 
 const initialState = {
     status: '',
-    message: ''
+    message: '',
+    initialDpoaData: {}
 };
 
 export default (state = initialState, action) => {
@@ -11,7 +12,10 @@ export default (state = initialState, action) => {
             return {...state, status: action.payload };
         case DOCX_ERROR:
             return {...state, message: action.payload };
-        default:
+        case INITIAL_DPOA:
+            return {...state, initialDpoaData: action.payload };
+        default: {
             return state;
-    }   
-};
+        }
+    }
+}

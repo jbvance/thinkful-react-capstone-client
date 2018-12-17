@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { reduxForm } from 'redux-form';
 import PropTypes from 'prop-types'
 import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
-import { makeDoc } from '../../actions/index';
+import { makeDoc, getInitialDpoaData } from '../../actions/index';
+import { parseJwt } from '../utils';
+import { API_BASE_URL } from '../../config';
 
-const token = localStorage.getItem('authToken');
-axios.defaults.headers.post['authorization'] = `Bearer ${token}`;
-
-export class DpoaWizard extends Component {
+export class DpoaWizard extends Component { 
     
   state = {
-    page: 1
+    page: 1,
+    initVal: {fullName: 'MIKEY'}
   };
 
   nextPage = () => {
@@ -24,15 +25,19 @@ export class DpoaWizard extends Component {
     this.setState({ page: this.state.page - 1 })
   }
 
-sendDoc = (values) => { 
-  console.log('VALUES', values);
+  componentDidMount() {
+    //Preload the form if there is any data for the user
+    this.props.getInitialDpoaData();
+  }
+
+sendDoc = (values) => {   
   this.props.makeDoc(values, () => {    
     //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
     this.props.history.push('/');
   });   
-}
+};
 
-  render() {   
+  render() {       
     const onSubmit = this.sendDoc;   
     const { page } = this.state
     return (
@@ -58,4 +63,25 @@ sendDoc = (values) => {
   }
 }
 
-export default connect(null, { makeDoc })(DpoaWizard);
+const getData = (state) => {
+  const { fullName, address, agents, effectiveNow } = state.docx.initialDpoaData;
+  return {
+    fullName,
+    address,
+    agents,
+    effectiveNow
+  }  
+}
+
+
+const mapStateToProps = state => ({
+  authenticated: state.auth.authenticated,
+  initialValues: getData(state)
+});
+
+DpoaWizard = reduxForm({
+  form: 'wizard',     
+  enableReinitialize: true
+})(DpoaWizard)
+
+export default connect(mapStateToProps, { makeDoc, getInitialDpoaData })(DpoaWizard);

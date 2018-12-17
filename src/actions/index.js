@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { AUTH_USER, AUTH_ERROR, DOCX_STATUS, DOCX_ERROR } from './types';
+import { AUTH_USER, AUTH_ERROR, DOCX_STATUS, DOCX_ERROR, INITIAL_DPOA } from './types';
 import { API_BASE_URL } from '../config';
-
-// const authToken = localStorage.getItem('authToken');
-// console.log('authToken', authToken);
+import { parseJwt } from '../components/utils';
 
 export const signup = (formProps, callback) => async dispatch => {
     const { email, password } = formProps;
@@ -67,7 +65,7 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
     try {    
         const token = getState().auth.authenticated;
         axios.defaults.headers.post['authorization'] = `Bearer ${token}`            
-        const response = await axios.post(`${API_BASE_URL}/docx`, { ...values }, );
+        const response = await axios.post(`${API_BASE_URL}/dpoa`, { ...values }, );
         console.log(response.data.message);
         dispatch({ type: DOCX_STATUS, payload: response.data.message})        
         callback();    
@@ -76,4 +74,21 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
         console.error('ERROR', error);
         dispatch({ type: DOCX_ERROR, payload: error.message}) 
     }                      
-  }
+}
+
+
+export const getInitialDpoaData =  () => async (dispatch, getState) => {
+    try {     
+      let dpoa = {}
+      const token = getState().auth.authenticated;      
+      const userId = parseJwt(token).user.id;
+      axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
+      dpoa = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
+      console.log('DPOA', dpoa.data);
+      dispatch({ type: INITIAL_DPOA, payload: dpoa.data }); 
+    }
+    catch(err) {
+        console.log('ERROR: ', err);
+        throw (err);
+    }  
+}
