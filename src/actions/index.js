@@ -69,9 +69,8 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
 
         const token = getState().auth.authenticated;
         axios.defaults.headers.post['authorization'] = `Bearer ${token}`            
-        const response = await axios.post(`${API_BASE_URL}/dpoa`, { ...values });
-        console.log(response.data.message);
-        dispatch({ type: DOCX_STATUS, payload: response.data.message});     
+        const response = await axios.post(`${API_BASE_URL}/dpoa`, { ...values });        
+        dispatch({ type: DOCX_STATUS, payload: { message: response.data.message, filename: response.data.filename} });     
         callback();    
     }    
     catch (error) {
@@ -88,8 +87,8 @@ export const getInitialDpoaData =  () => async (dispatch, getState) => {
       axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
       dpoa = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
       dpoa = dpoa.data;
-      dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };
-      console.log('DPOA', dpoa);
+      //effectiveNow comes in as boolean; convert it to a string for the html select element
+      dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
       dispatch({ type: INITIAL_DPOA, payload: dpoa }); 
     }
     catch(err) {

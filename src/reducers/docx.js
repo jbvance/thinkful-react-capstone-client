@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case DOCX_STATUS:
-            return {...state, status: action.payload };
+            return {...state, message: action.payload.message, filename: action.payload.filename  };
         case DOCX_ERROR:
             return {...state, errormessage: action.payload };
         case INITIAL_DPOA:
