@@ -81,15 +81,15 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
 
 export const getInitialDpoaData =  () => async (dispatch, getState) => {
     try {     
-      let dpoa = {}
+      let dpoa = null
       const token = getState().auth.authenticated;      
       const userId = parseJwt(token).user.id;
       axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
-      dpoa = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
-      console.log('DPOA', dpoa);
-      dpoa = dpoa.data;
+      const dpoaData = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
+      console.log('DPOA', dpoaData.data);
+      dpoa = dpoaData.data;      
       //effectiveNow comes in as boolean; convert it to a string for the html select element
-      dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
+      if (dpoa && Object.keys(dpoa).length > 0) dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
       dispatch({ type: INITIAL_DPOA, payload: dpoa }); 
     }
     catch(err) {
