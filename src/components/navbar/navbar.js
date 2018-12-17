@@ -3,24 +3,18 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const burgerToggle = () => {
-    let linksEl = document.querySelector('.narrowLinks');
-    if (linksEl.style.display === 'block') {
-        linksEl.style.display = 'none';
-    } else {
-        linksEl.style.display = 'block';
-    }
-}
-
 const renderLinks = (props) => {
     if (props.authenticated) {
         return (
             <div>
-            <div>
-                <li className="nav-item"><Link to="/signout" className="nav-links">Sign Out</Link></li>
-            </div>
-            <div>
-                <li className="nav-item"><Link to="/start" className="nav-links">Start</Link></li>
+                <div>
+                    <li className="nav-item"><Link to="/signout" className="nav-links">Sign Out</Link></li>
+                </div>
+                <div>
+                    <li className="nav-item"><Link to="/start" className="nav-links">Start</Link></li>
+                </div>
+                <div>
+                <li className="nav-item">Logged in as: {props.email}</li>
             </div>
             </div>
            
@@ -49,7 +43,8 @@ const NavBar = props => (
 )
 
 const mapStateToProps = state => ({
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    email: state.auth.email
 });
 	
 

@@ -15,6 +15,7 @@ import Signin from './components/auth/signin';
 import DpoaWizard from './components/dpoa/dpoa-wizard';
 import RequireAuth from './components/requireAuth';
 import Results from './components/results';
+import { parseJwt } from './components/utils';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -24,11 +25,14 @@ import './grid.css';
 
 console.log("ENVIRONMENT", process.env.NODE_ENV);
 
+ const authToken = localStorage.getItem('authToken');
+ const email = authToken && authToken.user.email ? parseJwt(authToken).user.email : '';
+
 // required for redux devtools in browser
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, {
     // initial state
-    auth: { authenticated: localStorage.getItem('authToken') }
+    auth: { authenticated: authToken, email }
 }, composeEnhancers(
     applyMiddleware(reduxThunk)
   ));

@@ -10,7 +10,7 @@ export const signup = (formProps, callback) => async dispatch => {
             email, 
             password
         });                 
-        dispatch({ type: AUTH_USER, payload: response.data.authToken });
+        dispatch({ type: AUTH_USER, payload: { authenticated: response.data.authToken, email } });
         localStorage.setItem('authToken', response.data.authToken);       
         callback();
     } catch(err) {       
@@ -31,7 +31,7 @@ export const signin = (formProps, callback) => async dispatch => {
             email, 
             password
         });         
-        dispatch({ type: AUTH_USER, payload: response.data.authToken });
+        dispatch({ type: AUTH_USER, payload: {authenticated: response.data.authToken, email} });
         localStorage.setItem('authToken', response.data.authToken);
         callback();
     } catch(err) {
@@ -52,8 +52,8 @@ export const signout = () => {
     localStorage.removeItem('authToken');
     return {
         type: AUTH_USER,
-        payload: ''
-    }
+        payload: { authenticated: '', email: '' }
+    };
 };
 
 export const setAuthError = (value) => ({
@@ -82,7 +82,7 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
 export const getInitialDpoaData =  () => async (dispatch, getState) => {
     try {     
       let dpoa = null
-      const token = getState().auth.authenticated;      
+      const token = getState().auth.authenticated;           
       const userId = parseJwt(token).user.id;
       axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
       const dpoaData = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
