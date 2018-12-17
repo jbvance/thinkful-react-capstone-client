@@ -12,7 +12,7 @@ const DpoaProfile = props => {
         type="text"
         component={renderField}
         label="Full Name"
-        placeholder="Full legal name, including middle name or inintial (if any)"
+        placeholder="Full legal name, including middle name or initial (if any)"
       />      
       <Field
         name="address"

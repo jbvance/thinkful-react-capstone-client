@@ -45,7 +45,7 @@ export class AuthForm extends Component {
                         />                                                    
                     <div className="row">
                         <div className="col-100">
-                            <button className="btn btn-submit">Sign up</button>
+                            <button className="btn btn-submit">{this.props.buttonText}</button>
                         </div>                            
                     </div>                                        
                 </form>
@@ -63,7 +63,9 @@ const validate = values => {
     }
     if (!values.password) {
         errors.password = 'Password is Required'
-    }    
+    } else if (values.password.length < 10) {
+        errors.password = 'Password must be at least 10 characters'
+    }
     return errors;
 }
 

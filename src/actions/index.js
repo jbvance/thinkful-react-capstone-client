@@ -28,6 +28,7 @@ export const signup = (formProps, callback) => async dispatch => {
 export const signin = (formProps, callback) => async dispatch => {
     const { email, password } = formProps;
     try {
+        dispatch({ type: AUTH_ERROR, payload: ''})
         const response = await axios.post(`${API_BASE_URL}/auth/login`, {
             email, 
             password
@@ -36,8 +37,11 @@ export const signin = (formProps, callback) => async dispatch => {
         localStorage.setItem('authToken', response.data.authToken);
         callback();
     } catch(err) {
-       console.log("ERROR", err.response);
-       if (err.response.status === 401) {                   
+       console.log("ERROR", err);
+        if (!err.response) {
+            // No response returned from server
+            dispatch({ type: AUTH_ERROR, payload: 'Unable to reach server to login. Please try again later.'})
+        } else if (err.response.status === 401) {                   
          dispatch({ type: AUTH_ERROR, payload: 'Incorrect email or password'})
        }  else {
         dispatch({ type: AUTH_ERROR, payload: 'Unable to login - Please try again later'})
