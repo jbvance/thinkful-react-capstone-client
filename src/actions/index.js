@@ -86,6 +86,7 @@ export const getInitialDpoaData =  () => async (dispatch, getState) => {
       const userId = parseJwt(token).user.id;
       axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
       dpoa = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
+      console.log('DPOA', dpoa);
       dpoa = dpoa.data;
       //effectiveNow comes in as boolean; convert it to a string for the html select element
       dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
