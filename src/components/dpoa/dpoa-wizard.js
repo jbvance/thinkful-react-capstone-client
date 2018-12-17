@@ -6,7 +6,6 @@ import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
 import { makeDoc } from '../../actions/index';
-import { API_BASE_URL } from '../../config';
 
 const token = localStorage.getItem('authToken');
 axios.defaults.headers.post['authorization'] = `Bearer ${token}`;
@@ -26,12 +25,11 @@ export class DpoaWizard extends Component {
   }
 
 sendDoc = (values) => { 
-  this.props.makeDoc(values, () => {
+  console.log('VALUES', values);
+  this.props.makeDoc(values, () => {    
     //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
     this.props.history.push('/');
-  });
- 
-  
+  });   
 }
 
   render() {   
@@ -59,6 +57,5 @@ sendDoc = (values) => {
     )
   }
 }
-
 
 export default connect(null, { makeDoc })(DpoaWizard);

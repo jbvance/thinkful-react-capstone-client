@@ -2,10 +2,8 @@ import axios from 'axios';
 import { AUTH_USER, AUTH_ERROR, DOCX_STATUS, DOCX_ERROR } from './types';
 import { API_BASE_URL } from '../config';
 
-const token = localStorage.getItem('authToken');
-axios.defaults.headers.post['authorization'] = `Bearer ${token}`;
-
-//console.log("API", API_BASE_URL);
+// const authToken = localStorage.getItem('authToken');
+// console.log('authToken', authToken);
 
 export const signup = (formProps, callback) => async dispatch => {
     const { email, password } = formProps;
@@ -61,9 +59,11 @@ export const setAuthError = (value) => ({
    payload: value 
 });
 
-export const makeDoc = (values, callback) => async dispatch => {  
+export const makeDoc = (values, callback) => async (dispatch, getState) => {  
     try {    
-        const response = await axios.post(`${API_BASE_URL}/docx`, { ...values });
+        const token = getState().auth.authenticated;
+        axios.defaults.headers.post['authorization'] = `Bearer ${token}`            
+        const response = await axios.post(`${API_BASE_URL}/docx`, { ...values }, );
         console.log(response.data.message);
         dispatch({ type: DOCX_STATUS, payload: response.data.message})        
         callback();    

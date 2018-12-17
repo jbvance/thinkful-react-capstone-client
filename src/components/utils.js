@@ -25,4 +25,26 @@ export const renderField = ({
                     </div>)}            
 
         </div>                                                   
-    )};     
+    )};
+
+export const renderSelect = (
+    {
+        input,
+        label,
+        meta: {touched, error},
+        children
+    }) => (
+  <div className="field">
+    <label className="label">{label}</label>
+    <div className="control">
+      <div className={
+        'select ' + (touched ? (error ? 'is-danger' : 'is-success') : '')
+      }>
+        <select {...input} >
+          {children}
+        </select>
+        {touched && (error && <div className="alert alert-danger alert-center"> {error}</div>)}
+      </div>
+    </div>
+  </div>
+);

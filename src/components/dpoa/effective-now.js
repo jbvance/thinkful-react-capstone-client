@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field,  reduxForm } from 'redux-form';
 import validate from './validate';
+import { renderSelect } from '../utils';
 
 const EffectiveNow = props => {
     const { handleSubmit, submitting } = props
@@ -9,7 +10,8 @@ const EffectiveNow = props => {
       <div>
         <label>When should this document become effective?</label>
         <div>
-          <Field name="effectiveNow" component="select">   
+          <Field name="effectiveNow" component={renderSelect}>  
+            <option></option> 
             <option value="false">Effective only upon my disability</option>           
             <option value="true">Effective immediately</option>                      
           </Field>

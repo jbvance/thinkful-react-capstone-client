@@ -25,6 +25,9 @@ const validate = values => {
         errors.agents = agentsArrayErrors
       }
     }
+    if(!values.effectiveNow) {
+      errors.effectiveNow = 'Please select when the document should become effective'
+    }
     // if (!values.email) {
     //   errors.email = 'Required'
     // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
