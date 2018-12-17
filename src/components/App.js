@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './header';
+//import Header from './header';
+import NavBar from '../components/navbar/navbar';
 
 
 export default ({ children }) => {
   return (
     <div>
-      <Header />
+      <NavBar />
       <div className="container">
         {children}
       </div>      

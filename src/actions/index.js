@@ -87,8 +87,10 @@ export const getInitialDpoaData =  () => async (dispatch, getState) => {
       const userId = parseJwt(token).user.id;
       axios.defaults.headers.get['authorization'] = `Bearer ${token}` 
       dpoa = await axios.get(`${API_BASE_URL}/dpoa/${userId}`);
-      console.log('DPOA', dpoa.data);
-      dispatch({ type: INITIAL_DPOA, payload: dpoa.data }); 
+      dpoa = dpoa.data;
+      dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };
+      console.log('DPOA', dpoa);
+      dispatch({ type: INITIAL_DPOA, payload: dpoa }); 
     }
     catch(err) {
         console.log('ERROR: ', err);
