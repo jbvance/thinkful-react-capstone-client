@@ -89,7 +89,7 @@ export const getInitialDpoaData =  () => async (dispatch, getState) => {
       console.log('DPOA', dpoaData.data);
       dpoa = dpoaData.data;      
       //effectiveNow comes in as boolean; convert it to a string for the html select element
-      if (dpoa && Object.keys(dpoa).length > 0) dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
+      if (dpoa && dpoa.hasOwnProperty('effectiveNow')) dpoa = {...dpoa, effectiveNow: dpoa.effectiveNow.toString() };     
       dispatch({ type: INITIAL_DPOA, payload: dpoa }); 
     }
     catch(err) {
