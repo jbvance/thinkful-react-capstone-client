@@ -26,7 +26,7 @@ import './grid.css';
 console.log("ENVIRONMENT", process.env.NODE_ENV);
 
  const authToken = localStorage.getItem('authToken');
- const email = authToken && authToken.user.email ? parseJwt(authToken).user.email : '';
+ const email = authToken && parseJwt(authToken).user ? parseJwt(authToken).user.email : '';
 
 // required for redux devtools in browser
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
