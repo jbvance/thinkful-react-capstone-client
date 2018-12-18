@@ -15,7 +15,7 @@ const renderNavLinks = props => {
     );
 }
 
-const NavBar = props => (	
+export const NavBar = props => (	
     <header className="header">
 		<h2 className="logo">{<Link to="/">EstateDox</Link>}</h2>
       {renderNavLinks(props)}
