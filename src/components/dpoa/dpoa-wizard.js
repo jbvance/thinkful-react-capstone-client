@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { reduxForm } from 'redux-form';
-import PropTypes from 'prop-types'
 import DpoaProfile from './dpoa-profile';
 import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
 import { makeDoc, getInitialDpoaData } from '../../actions/index';
-import { parseJwt } from '../utils';
-import { API_BASE_URL } from '../../config';
 
 export class DpoaWizard extends Component { 
     

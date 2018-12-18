@@ -3,43 +3,23 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const renderLinks = (props) => {
-    if (props.authenticated) {
-        return (
-            <div>
-                <div>
-                    <li className="nav-item"><Link to="/signout" className="nav-links">Sign Out</Link></li>
-                </div>
-                <div>
-                    <li className="nav-item"><Link to="/start" className="nav-links">Start</Link></li>
-                </div>
-                <div>
-                <li className="nav-item">Logged in as: {props.email}</li>
-            </div>
-            </div>
-           
-        );
-    } else {
-        return (
-            <div>
-                <li className="nav-item">
-                    <Link to="/signup" className="nav-links">Signup</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/signin" className="nav-links">Sign In</Link>
-                </li>    
-            </div>
-        );
-    }
+const renderNavLinks = props => {
+    return (
+        <ul className="main-nav">
+          {props.authenticated && <Link to="/signout" className="nav-links">Sign Out</Link>}
+          {props.authenticated && <li><Link to="/start" className="nav-links">New Document</Link></li>}
+          {props.authenticated && <li className="email-label">Logged in as: {props.email}</li>}
+          {!props.authenticated && <Link to="/signup">Signup</Link>}
+          {!props.authenticated && <Link to="/signin">Sign In</Link>}
+      </ul>
+    );
 }
 
 const NavBar = props => (	
-    <nav className="navbar">
-        <div>LOGO HERE</div>
-            <ul className="nav-links">
-                {renderLinks(props)}               
-            </ul>
-  </nav>
+    <header className="header">
+		<h2 className="logo">{<Link to="/">EstateDox</Link>}</h2>
+      {renderNavLinks(props)}
+	</header> 
 )
 
 const mapStateToProps = state => ({

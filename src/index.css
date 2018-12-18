@@ -24,6 +24,11 @@ body {
 }
 
 
+a {
+  text-decoration: none;
+}
+
+
 input[type=text], input[type=password], select, textarea {
   margin-bottom: 20px;
   width: 100%;

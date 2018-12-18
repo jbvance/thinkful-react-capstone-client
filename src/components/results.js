@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { API_BASE_URL } from '../config';
-import axios from 'axios';
-import { getDiffieHellman } from 'crypto';
 
 export const Results = (props) => {
     const url = `${API_BASE_URL}/dpoa/files/${props.filename}`;    
