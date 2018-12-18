@@ -10,7 +10,7 @@ export class DpoaWizard extends Component {
     
   state = {
     page: 1,
-    initVal: {fullName: 'MIKEY'}
+    loading: false
   };
 
   nextPage = () => {
@@ -21,9 +21,19 @@ export class DpoaWizard extends Component {
     this.setState({ page: this.state.page - 1 })
   }
 
-  componentDidMount() {
-    //Preload the form if there is any data for the user
-    this.props.getInitialDpoaData();
+  componentDidMount = async () => {  
+    try {
+      this.setState({ loading: true });
+      //Preload the form if there is any data for the user
+      await this.props.getInitialDpoaData();   
+    } 
+    catch(err) {
+      console.log('ERROR', err.message);
+    }
+   finally {
+    this.setState({loading: false });
+   }
+    
   }
 
 sendDoc = (values) => {   
@@ -36,8 +46,11 @@ sendDoc = (values) => {
   render() {       
     const onSubmit = this.sendDoc;   
     const { page } = this.state
+    if (this.state.loading) {
+      return <div className="loader"></div>
+    } else
     return (
-      <div>
+      <div>        
         {page === 1 && <DpoaProfile onSubmit={this.nextPage} />}
         {page === 2 && (
           <DpoaAgents
@@ -59,20 +72,9 @@ sendDoc = (values) => {
   }
 }
 
-const getData = (state) => {
-  const { fullName, address, agents, effectiveNow } = state.docx.initialDpoaData;
-  return {
-    fullName,
-    address,
-    agents,
-    effectiveNow
-  }  
-}
-
-
 const mapStateToProps = state => ({
   authenticated: state.auth.authenticated,
-  initialValues: getData(state)
+  initialValues: state.docx.initialDpoaData
 });
 
 DpoaWizard = reduxForm({

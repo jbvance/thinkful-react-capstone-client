@@ -26,13 +26,16 @@ export const signup = (formProps, callback) => async dispatch => {
 export const signin = (formProps, callback) => async dispatch => {
     const { email, password } = formProps;
     try {
+        
         dispatch({ type: AUTH_ERROR, payload: ''})
         const response = await axios.post(`${API_BASE_URL}/auth/login`, {
             email, 
             password
         });         
         dispatch({ type: AUTH_USER, payload: {authenticated: response.data.authToken, email} });
-        localStorage.setItem('authToken', response.data.authToken);
+        localStorage.setItem('authToken', response.data.authToken);        
+        // Go ahead and get any existing dpoa data for this user
+        
         callback();
     } catch(err) {
        console.log("ERROR", err);
@@ -80,6 +83,7 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
 }
 
 export const getInitialDpoaData =  () => async (dispatch, getState) => {
+    console.log('GETTING DATA...');
     try {     
       let dpoa = null
       const token = getState().auth.authenticated;           
