@@ -7,7 +7,6 @@ import { AuthForm } from '../auth/auth-form';
 describe('<Signin />', () => {        
 
     it ('renders without crashing', () => {
-        const wrapper = shallow(<Signin />); 
-        console.log(wrapper.html());      
+        const wrapper = shallow(<Signin />);             
     });
 });
