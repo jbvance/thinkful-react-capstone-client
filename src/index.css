@@ -21,6 +21,7 @@ body {
   text-align: center
 }
 
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -106,8 +107,16 @@ label {
  
 }
 
-form.card {
-  padding: 40px;
+.card form {
+  padding: 10px;
+}
+
+.card-heading {
+  padding: 10px 30px;
+}
+
+.card-heading h3 {
+  text-align: center;
 }
 
 div.alert-danger:before, span.alert-danger:before {

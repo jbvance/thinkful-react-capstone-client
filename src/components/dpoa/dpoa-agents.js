@@ -46,14 +46,24 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
 
 export const DpoaAgents = props => {
   const { handleSubmit, submitting, previousPage } = props
-  return (     
-    <form className="card" onSubmit={handleSubmit}>     
-    <FieldArray name="agents" component={renderAgents} />
-    <div className="wizard-btn-row">
-      <button onClick={previousPage} className="btn btn-wizard previous">Previous</button>
-      <button type="submit" disabled={submitting} className="btn btn-wizard next">Next</button>      
-    </div>
-  </form>
+  return (
+    <div className="card"> 
+      <div className="card-heading">
+        <h3>Enter your agent(s)</h3>
+        <p>
+          Your agent is the person responsible for managing your affairs if you are unable to do so yourself.
+          You must enter at least one agent. If you list more than one agent (which is recommended), they will serve in the 
+          order listed. If your first listed agent dies or is unable to act on your behalf, the second agent will then serve, etc.
+        </p>
+      </div>   
+      <form onSubmit={handleSubmit}>     
+      <FieldArray name="agents" component={renderAgents} />
+      <div className="wizard-btn-row">
+        <button onClick={previousPage} className="btn btn-wizard previous">Previous</button>
+        <button type="submit" disabled={submitting} className="btn btn-wizard next">Next</button>      
+      </div>
+    </form>
+  </div>
   )
 }
 
