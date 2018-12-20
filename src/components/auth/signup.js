@@ -5,7 +5,7 @@ import AuthForm from './auth-form';
 
 export class Signup extends React.Component {
     redirect() {
-        this.props.history.push('/profile');
+        this.props.history.push('/start');
     }
 
     render() {        

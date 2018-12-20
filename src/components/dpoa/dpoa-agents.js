@@ -44,13 +44,13 @@ const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
   </ul>
 )
 
-const DpoaAgents = props => {
-  const { handleSubmit, submitting } = props
+export const DpoaAgents = props => {
+  const { handleSubmit, submitting, previousPage } = props
   return (     
     <form className="card" onSubmit={handleSubmit}>     
     <FieldArray name="agents" component={renderAgents} />
     <div className="wizard-btn-row">
-      <button onClick={props.previousPage} className="btn btn-wizard previous">Previous</button>
+      <button onClick={previousPage} className="btn btn-wizard previous">Previous</button>
       <button type="submit" disabled={submitting} className="btn btn-wizard next">Next</button>      
     </div>
   </form>

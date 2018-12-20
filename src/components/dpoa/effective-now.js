@@ -3,7 +3,7 @@ import { Field,  reduxForm } from 'redux-form';
 import validate from './validate';
 import { renderSelect } from '../utils';
 
-const EffectiveNow = props => {
+export const EffectiveNow = props => {
     const { handleSubmit, submitting } = props
     return (     
       <form className="card" onSubmit={handleSubmit}>     
