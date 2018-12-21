@@ -130,9 +130,9 @@ describe('DOCX async action', () => {
             expect(dispatch).toHaveBeenNthCalledWith(2, { type: DOCX_ERROR, payload: ''});
             expect(dispatch).toHaveBeenLastCalledWith({ 
                 type: DOCX_ERROR, 
-                payload: 'Request failed with status code 500'
+                payload: 'Unable to create document.'
             }); 
-            expect(callback).not.toHaveBeenCalled();       
+            expect(callback).toHaveBeenCalled();       
         });
         
     }); 
