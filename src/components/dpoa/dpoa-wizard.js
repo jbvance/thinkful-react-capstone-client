@@ -10,7 +10,8 @@ export class DpoaWizard extends Component {
     
   state = {
     page: 1,
-    loading: false
+    loading: false,
+    error: ''
   };
 
   nextPage = () => {
@@ -37,7 +38,7 @@ export class DpoaWizard extends Component {
   }
 
 sendDoc = (values) => {   
-  this.setState({ loading: true });
+  this.setState({ loading: true });  
   this.props.makeDoc(values, () => {    
     //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
     this.setState({ loading: false });

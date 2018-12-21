@@ -75,7 +75,8 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
         callback();    
     }    
     catch (error) {        
-        dispatch({ type: DOCX_ERROR, payload: error.message}) 
+        dispatch({ type: DOCX_ERROR, payload: 'Unable to create document.'});
+        callback();
     }                      
 }
 
