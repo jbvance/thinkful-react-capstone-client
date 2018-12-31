@@ -3,7 +3,6 @@ import { Field, FieldArray, reduxForm } from 'redux-form';
 import validate from './validate';
 import  { renderField }  from '../utils';
 
-
 const renderAgents = ({ fields, meta: { error, submitFailed } }) => (
   <ul>
     <li>
@@ -49,12 +48,14 @@ export const DpoaAgents = props => {
   return (
     <div className="card"> 
       <div className="card-heading">
-        <h3>Enter your agent(s)</h3>
-        <p>
-          Your agent is the person responsible for managing your affairs if you are unable to do so yourself.
-          You must enter at least one agent. If you list more than one agent (which is recommended), they will serve in the 
-          order listed. If your first listed agent dies or is unable to act on your behalf, the second agent will then serve, etc.
-        </p>
+        <h3>Step 2: Enter your agent(s)</h3>
+       <ul>
+        <li>Your agent is the person responsible for managing your affairs if you are incapacitated.</li>
+        <li> You must enter at least one agent.</li>
+        <li>If you list more than one agent (which is recommended), they will serve in the 
+            order listed. If your first listed agent dies or is unable to act on your behalf, the second agent will then serve, etc.</li>
+       </ul>
+       
       </div>   
       <form onSubmit={handleSubmit}>     
       <FieldArray name="agents" component={renderAgents} />

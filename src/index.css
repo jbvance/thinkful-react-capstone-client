@@ -5,9 +5,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Play', sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f3f3;
 }
 
 
@@ -65,9 +66,12 @@ label {
   display: inline-block;
 }
 
+
 .form-label {
  max-width: 150px;
 }
+
+
 
 .btn {   
   padding: 12px 20px;
@@ -95,6 +99,11 @@ label {
   font-weight:900;
 }
 
+.btn-login {
+  background-color: #5b90bf;
+  color: white;
+}
+
 /* input[type=submit]:hover {
   background-color: #45a049;
 } */
@@ -104,11 +113,16 @@ label {
   transition: 0.3s;
   max-width: 700px;
   margin: 0 auto;
- 
+  margin-bottom: 50px;
+  background-color: white; 
 }
 
 .card form {
   padding: 10px;
+}
+
+.card-signin {
+  padding: 20px;
 }
 
 .card-heading {
@@ -116,7 +130,21 @@ label {
 }
 
 .card-heading h3 {
+  background-color: #3498db
+}
+
+.card-heading h3 {
   text-align: center;
+  padding: 20px 0;
+  color: white;
+}
+
+.card-heading ul {
+  list-style: circle;
+}
+
+.card-heading ul li {
+  margin-bottom: 10px;
 }
 
 div.alert-danger:before, span.alert-danger:before {

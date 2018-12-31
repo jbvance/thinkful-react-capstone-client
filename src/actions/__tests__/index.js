@@ -159,10 +159,10 @@ describe('GetInitialDPOA async actions', () => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             await request.respondWith({
-              status: 200,
-              response: { dpoa: {name: 'sample dpoa data'} }
+                status: 200,
+                response: { dpoa: { name: 'sample dpoa data' } }
             });
-          });       
+        });       
 
         
         const getState = () => {

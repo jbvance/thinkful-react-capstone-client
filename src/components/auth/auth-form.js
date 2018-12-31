@@ -25,7 +25,7 @@ export class AuthForm extends Component {
             <div>
                 <h1 className="title-header">{this.props.title}</h1>                  
                 {this.props.errorMessage && <div className="alert alert-danger alert-danger-box alert-center">{this.props.errorMessage}</div>}
-                <form className="card" onSubmit={handleSubmit(this.onSubmit)}>                
+                <form className="card card-signin" onSubmit={handleSubmit(this.onSubmit)}>                
                     <Field 
                         name="email"
                         id="email"
@@ -45,7 +45,7 @@ export class AuthForm extends Component {
                         />                                                    
                     <div className="row">
                         <div className="col-100">
-                            <button className="btn btn-submit">{this.props.buttonText}</button>
+                            <button className="btn btn-submit btn-login">{this.props.buttonText}</button>
                         </div>                            
                     </div>                                        
                 </form>
