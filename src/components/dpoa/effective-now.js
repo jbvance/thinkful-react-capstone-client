@@ -10,7 +10,7 @@ export const EffectiveNow = props => {
         <div className="card-heading">
           <h3>Step 3: When should this document become effective?</h3>
           <p>
-            If you select 'Effective only upon my disability', your agent(s) will
+            If you select "Effective only upon my disability", your agent(s) will
             not be able to act on your behalf until your doctor has determined that you are
             unable to manage your own affairs.
           </p>

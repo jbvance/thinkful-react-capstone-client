@@ -17,7 +17,7 @@ const renderNavLinks = props => {
 
 export const NavBar = props => (	
     <header className="header">
-		<h2 className="logo">{<Link to="/">EstateDox</Link>}</h2>
+		<h2 className="logo">{<Link to="/"><span><i className="fas fa-file-signature app-icon"></i></span>EstateDox</Link>}</h2>
       {renderNavLinks(props)}
 	</header> 
 )
