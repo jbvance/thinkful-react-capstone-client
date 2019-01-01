@@ -7,7 +7,7 @@ export default ({ children }) => {
   return (
     <div>
       <NavBar />
-      <div className="container">
+      <div>
         {children}
       </div>      
     </div>
