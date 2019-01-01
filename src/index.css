@@ -18,37 +18,35 @@ body {
   margin: 0 auto;
 }
 
+.container p {
+  line-height: 1.8em;
+  margin-bottom: 30px;
+}
+
+.disclaimer {
+  margin-top: 50px;
+}
+
 .title-header {
   text-align: center
 }
 
-.hero-image {
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/parents-child-banner.jpg");
+.hero-text-bottom-left {
+  position: absolute;
+  bottom: 5em;
+  left: 8em;
+  color: #5b90bf;
+  background-color: white;
+  padding: 10px;
+}
 
-  /* Set a specific height */
-  height: 50%;
-
-  /* Position and center the image to scale nicely on all screens */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.hero {
   position: relative;
 }
 
-.hero-text {
-  text-align: center;
-  color: white;
-}
-
-.hero-text * {
-  padding: 30px 0 0 0;
-}
-
-
-.responsive {
+.responsive-image {
   width: 100%;
-  height: auto;
+  height: auto; 
 }
 
 
@@ -134,10 +132,6 @@ label {
   background-color: #5b90bf;
   color: white;
 }
-
-/* input[type=submit]:hover {
-  background-color: #45a049;
-} */
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -288,6 +282,13 @@ form ul li > button:before {
   align-content: center;
   align-items: center;
 }
+
+/* media query for hero-text on homepage */
+@media screen and (max-width: 780px) { 
+ .hero-text-bottom-left {
+   display: none;
+ }
+} 
 
 
 /* Responsive layout for grid */
