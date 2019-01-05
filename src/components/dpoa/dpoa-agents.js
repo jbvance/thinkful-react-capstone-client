@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import validate from './validate';
 import  { renderField }  from '../utils';
@@ -68,6 +69,12 @@ export const DpoaAgents = props => {
   )
 }
 
+DpoaAgents.propTypes = {
+  previousPage: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
+};
 export default reduxForm({
   form: 'wizard', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data

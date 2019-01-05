@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import DpoaProfile from './dpoa-profile';
@@ -84,5 +85,10 @@ DpoaWizard = reduxForm({
   form: 'wizard',     
   enableReinitialize: true
 })(DpoaWizard)
+
+DpoaWizard.propTypes = {
+  getInitialDpoaData: PropTypes.func.isRequired,
+  makeDoc: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, { makeDoc, getInitialDpoaData })(DpoaWizard);

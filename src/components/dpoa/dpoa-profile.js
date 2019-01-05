@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import { renderField } from '../utils';
@@ -35,6 +36,11 @@ const DpoaProfile = props => {
     </div>
   )
 }
+
+DpoaProfile.propTypes = {
+  handleSubmit: PropTypes.func.isRequired, 
+  onSubmit: PropTypes.func.isRequired,  
+};
 
 export default reduxForm({
   form: 'wizard', // <------ same form name

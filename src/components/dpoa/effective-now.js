@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field,  reduxForm } from 'redux-form';
 import validate from './validate';
 import { renderSelect } from '../utils';
@@ -36,6 +37,13 @@ export const EffectiveNow = props => {
     </div>   
     )
   }
+
+  EffectiveNow.propTypes = {
+    previousPage: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    submitting: PropTypes.bool.isRequired
+  };
   
   export default reduxForm({
     form: 'wizard', // <------ same form name
