@@ -49,6 +49,24 @@ export const signin = (formProps, callback) => async dispatch => {
    
 };
 
+// If the user visits and is authenticated already, then refresh the jwt so it
+// doesn't expire during this visit in case it's about to expire.
+export const refreshAuthToken = () => async (dispatch, getState) =>  {    
+    const token = getState().auth.authenticated;
+    try {
+        axios.defaults.headers.post['authorization'] = `Bearer ${token}`  
+        const response = await axios.post(`${API_BASE_URL}/auth/refresh`);        
+        const newToken = response.data.authToken;
+        const email = parseJwt(newToken).user.email;
+        dispatch({ type: AUTH_USER, payload: {authenticated: newToken, email} });        
+
+    } catch(error) {
+        // unable to verify authentication or jwt is not valid, so clear the jwt if present
+        signout();
+    }
+     
+};
+
 export const signout = () => {
     localStorage.removeItem('authToken');
     return {
@@ -80,6 +98,7 @@ export const makeDoc = (values, callback) => async (dispatch, getState) => {
     }                      
 }
 
+// Get the data from the previously saved visit (if any)
 export const getInitialDpoaData =  () => async (dispatch, getState) => {   
     try {     
       let dpoa = null;

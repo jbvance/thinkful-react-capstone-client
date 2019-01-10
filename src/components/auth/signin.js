@@ -10,7 +10,7 @@ export class Signin extends React.Component {
 
     render() {       
         return (
-            <AuthForm onSubmit={this.props.signin} title="Sign In" buttonText="Login" redirect={() => this.redirect()}/>
+            <AuthForm onSubmit={this.props.signin} title="Sign In" buttonText="Submit" redirect={() => this.redirect()}/>
         )
     }
 }

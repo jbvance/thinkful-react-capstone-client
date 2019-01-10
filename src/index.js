@@ -16,6 +16,7 @@ import DpoaWizard from './components/dpoa/dpoa-wizard';
 import RequireAuth from './components/requireAuth';
 import Results from './components/results';
 import { parseJwt } from './components/utils';
+import { refreshAuthToken } from './actions/index';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -36,6 +37,12 @@ const store = createStore(reducers, {
 }, composeEnhancers(
     applyMiddleware(reduxThunk)
   ));
+
+if (store.getState().auth.authenticated) {
+    // refresh token in case it's old so it doesn't expire during app use
+    console.log('refreshing token');
+    store.dispatch(refreshAuthToken());
+}
 
 ReactDOM.render(
     <Provider store={store}>

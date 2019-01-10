@@ -4,10 +4,6 @@ import { AuthForm } from '../auth/auth-form';
 
 let wrapper;
 
-// beforeEach(() => {
-   
-// })
-
 it ('renders without crashing', () => {
     const handleSubmit = jest.fn();
     const setAuthError = jest.fn();

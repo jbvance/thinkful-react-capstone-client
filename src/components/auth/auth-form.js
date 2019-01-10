@@ -23,9 +23,10 @@ export class AuthForm extends Component {
         const { handleSubmit } = this.props;                 
         return (                      
             <div>
-                <h1 className="title-header">{this.props.title}</h1>                  
+                                 
                 {this.props.errorMessage && <div className="alert alert-danger alert-danger-box alert-center">{this.props.errorMessage}</div>}
-                <form className="card card-signin" onSubmit={handleSubmit(this.onSubmit)}>                
+                <form className="card card-signin" onSubmit={handleSubmit(this.onSubmit)}>  
+                    <h1 className="title-header">{this.props.title}</h1>              
                     <Field 
                         name="email"
                         id="email"

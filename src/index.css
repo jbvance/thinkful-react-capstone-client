@@ -142,6 +142,10 @@ label {
   background-color: white; 
 }
 
+.header-center {
+  text-align: center
+}
+
 .card form {
   padding: 10px;
 }
@@ -207,6 +211,27 @@ div.alert-danger:before, span.alert-danger:before {
   background-color: #f2dede;
   border-color: #ebccd1;
   padding: 20px;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-success-box {
+  width: 80%;
+  margin: 0 auto 20px auto;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  padding: 20px;
+  text-align: center;
+}
+
+.alert-success .alert-link {
+  font-weight: 700;
+  color: #2b542c;
+  text-align: center;
 }
 
 .alert-center{

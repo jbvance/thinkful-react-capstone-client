@@ -6,10 +6,12 @@ import NavBar from '../components/navbar/navbar';
 export default ({ children }) => {
   return (
     <div>
-      <NavBar />
-      <div>
+      <header role="banner">
+        <NavBar />
+      </header>      
+      <main role="main">
         {children}
-      </div>      
+      </main>      
     </div>
   );
 }

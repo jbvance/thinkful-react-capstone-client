@@ -8,7 +8,7 @@ export class Signout extends Component {
     }
 
     render() {
-        return <div>You have logged out successfully. Click the 'Sign In' link above to login again.</div>
+        return <div className="header-center"><h2>You have logged out successfully. Click the 'Sign In' link above to login again.</h2></div>
     }
 }
 

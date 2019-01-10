@@ -7,13 +7,13 @@ export const Results = (props) => {
     return(
         <div>
            {props.message &&
-            <div>
-                <h3 className="alert-success alert-success-box">{props.message}</h3> 
-                <h5><a href={url}>Click here to download your document</a></h5>    
+            <div className="alert-success alert-success-box">
+                <h3>{props.message}</h3>
+                <h5><a href={url} className="alert-link">Click here to download your document</a></h5>    
             </div>   
            }
            {props.errorMessage &&
-            <h3 className="alert-danger alert-danger-box">{props.errorMessage} </h3>        
+            <h3 className="alert-danger alert-danger-box">{props.errorMessage}</h3>        
            }
         </div>
     );
