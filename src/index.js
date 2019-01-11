@@ -52,7 +52,7 @@ ReactDOM.render(
                 <Route path="/signout" exact component={Signout} />
                 <Route path="/signin" exact component={Signin} /> 
                 <Route path="/start" exact component={RequireAuth(DpoaWizard)} />   
-                <Route path="/results" exact component={Results} />                     
+                <Route path="/results" exact component={RequireAuth(Results)} />                     
             </App>
         </BrowserRouter>
     </Provider>
