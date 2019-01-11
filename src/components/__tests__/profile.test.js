@@ -1,10 +1,13 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow } from 'enzyme';
 
-import { Profile } from '../profile';
+import { DpoaProfile } from '../dpoa/dpoa-profile';
 
-describe('<Profile />', () => {
+const handleSubmit = jest.fn();
+const onSubmit = jest.fn();
+
+describe('<DpoaProfile />', () => {
     it ('Renders without crashing', () => {
-        shallow(<Profile />);
+        shallow(<DpoaProfile handleSubmit={handleSubmit} onSubmit={onSubmit} />);
     });
 });

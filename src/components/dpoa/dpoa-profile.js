@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import { renderField } from '../utils';
 
-const DpoaProfile = props => {
+export const DpoaProfile = props => {
   const { handleSubmit } = props
   return (
     <div className="card">
