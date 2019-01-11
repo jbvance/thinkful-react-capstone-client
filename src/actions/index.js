@@ -11,7 +11,7 @@ export const signup = (formProps, callback) => async dispatch => {
             password
         });                 
         dispatch({ type: AUTH_USER, payload: { authenticated: response.data.authToken, email } });
-        localStorage.setItem('authToken', response.data.authToken);       
+        localStorage.setItem('authToken', response.data.authToken);               
         callback();
     } catch(err) {       
        if (err.response.data) {                   
@@ -30,11 +30,10 @@ export const signin = (formProps, callback) => async dispatch => {
         const response = await axios.post(`${API_BASE_URL}/auth/login`, {
             email, 
             password
-        });               
+        });       
         dispatch({ type: AUTH_USER, payload: {authenticated: response.data.authToken, email} });
-        localStorage.setItem('authToken', response.data.authToken);        
-        // Go ahead and get any existing dpoa data for this user
-        
+        localStorage.setItem('authToken', response.data.authToken);                   
+        // Go ahead and get any existing dpoa data for this user        
         callback();
     } catch(err) {       
         if (!err.response) {

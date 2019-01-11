@@ -3,16 +3,14 @@ import { connect } from 'react-redux';
 import { signup } from '../../actions/index';
 import AuthForm from './auth-form';
 
-export class Signup extends React.Component {
-    redirect() {
-        this.props.history.push('/start');
-    }
+const redirect = (props) => {   
+    props.history.push('/start');
+}
 
-    render() {        
-        return (
-            <AuthForm onSubmit={this.props.signup} title="Sign Up" buttonText="Create account" redirect={() => this.redirect()}/>
-        )
-    }
+export const Signup = (props) => {        
+    return (
+        <AuthForm onSubmit={props.signup} title="Sign Up" buttonText="Create account" redirect={() => redirect(props)}/>
+    )
 }
 
 export default connect(
