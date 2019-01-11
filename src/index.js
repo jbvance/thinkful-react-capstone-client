@@ -9,7 +9,6 @@ import reducers from './reducers';
 import App from './components/App';
 import Welcome from './components/welcome';
 import Signup from './components/auth/signup';
-import Profile from './components/profile';
 import Signout from './components/auth/signout';
 import Signin from './components/auth/signin';
 import DpoaWizard from './components/dpoa/dpoa-wizard';
@@ -49,8 +48,7 @@ ReactDOM.render(
         <BrowserRouter>
             <App>
                 <Route path="/" exact component={Welcome} />
-                <Route path="/signup" exact component={Signup} />
-                <Route path="/profile" exact component={Profile} />
+                <Route path="/signup" exact component={Signup} />               
                 <Route path="/signout" exact component={Signout} />
                 <Route path="/signin" exact component={Signin} /> 
                 <Route path="/start" exact component={RequireAuth(DpoaWizard)} />   
