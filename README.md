@@ -1,7 +1,10 @@
 # EstateDox - [https://estatedox.netlify.com](https://estatedox.netlify.com)
 
 A web-based application that lets you create a durable power of attorney by completing a simple wizard. Simply fill in the
-relevant information, and you will be able to create and download a Microsoft Word version of the completed document.
+relevant information, and you will be able to create and download a Microsoft Word version of the completed document. A durable power of attorney
+is a legal document that allows you to name the peron(s) who will manage your financial affairs if you become incapacitated. Every state has
+a statutory durable power of attorney form, and the one used here is based on Texas law. Please note that the website is for demonstration
+purposes only and should not be relied upon for creating any binding legal documents.
 
 Login
 =====
