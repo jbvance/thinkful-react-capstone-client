@@ -1,4 +1,4 @@
-# EstateDox - [https://estatedox.netlify.com]](https://estatedox.netlify.com)
+# EstateDox - [https://estatedox.netlify.com](https://estatedox.netlify.com)
 
 A web-based application that lets you create a durable power of attorney by completing a simple wizard. Simply fill in the
 relevant information, and you will be able to create and download a Microsoft Word version of the completed document.
