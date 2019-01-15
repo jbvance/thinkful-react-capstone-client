@@ -32,3 +32,5 @@ Select when your document should become effective and submit the form. That's it
 *  If you select "Effective only upon my disability", your agent(s) will not be able to act on your behalf until your doctor has determined that you are unable to manage your own affairs.
 
 * If you select "Effective Immediately", your agent will be able to act on your behalf as soon as you sign the document, and the document will remain in effect during any subsequent disability.
+
+![Select when document becomes effective](public/images/tutorial/estate-dox-step-3.gif)
