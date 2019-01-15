@@ -30,7 +30,7 @@ export class DpoaWizard extends Component {
       await this.props.getInitialDpoaData();   
     } 
     catch(err) {
-      console.log('ERROR', err.message);
+      console.error('ERROR', err.message);
     }
    finally {
     this.setState({loading: false });

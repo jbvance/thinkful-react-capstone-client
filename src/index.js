@@ -38,8 +38,7 @@ const store = createStore(reducers, {
   ));
 
 if (store.getState().auth.authenticated) {
-    // refresh token in case it's old so it doesn't expire during app use
-    console.log('refreshing token');
+    // refresh token in case it's old so it doesn't expire during app use    
     store.dispatch(refreshAuthToken());
 }
 

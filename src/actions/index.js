@@ -111,7 +111,6 @@ export const getInitialDpoaData =  () => async (dispatch, getState) => {
       dispatch({ type: INITIAL_DPOA, payload: dpoa }); 
     }
     catch(err) {
-        console.log('ERROR: ', err);
         throw (err);
     }  
 }
