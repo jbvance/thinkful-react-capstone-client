@@ -16,7 +16,12 @@ export default () => {
            <p>A durable power of attorney allows you to name someone you trust to manage your finances for when you’re unable to do so yourself.
               Make sure your family will be taken care of if something happens to you by deciding now who will important financial 
               decisions if you can't.
-           </p>          
+           </p>   
+           <p><strong>To login as a demo user, use the following login information: <br />
+           email: demo@estatedox.com <br />
+           password: estatedox2019
+           </strong></p> 
+
             <Link className="btn btn-login" to="/signin">Click here to sign in</Link>
             <p className="disclaimer">
                 *DISCLAIMER: This website is for demonstration purposes and should not be relied on for producing binding legal documents.
