@@ -48,7 +48,12 @@ export class AuthForm extends Component {
                         <div className="col-100">
                             <button className="btn btn-submit btn-login">{this.props.buttonText}</button>
                         </div>                            
-                    </div>                                        
+                    </div> 
+                    <div style={{textAlign: 'center', fontWeight: 'bold'}}>
+                        <p>To login as a demo user, use the following login information: </p>
+                        <p>email: demo@estatedox.com</p>
+                        <p>password: estatedox2019</p>
+                    </div>                                       
                 </form>
             </div>
         );
