@@ -1,5 +1,7 @@
 # EstateDox - [https://estatedox.netlify.com](https://estatedox.netlify.com)
 
+[Code repository for server can be found here](https://github.com/jbvance/thinkful-react-capstone-server)
+
 A web-based application that lets you create a durable power of attorney by completing a simple wizard. Simply fill in the
 relevant information, and you will be able to create and download a Microsoft Word version of the completed document. A durable power of attorney
 is a legal document that allows you to name the peron(s) who will manage your financial affairs if you become incapacitated. Every state has
