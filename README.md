@@ -6,6 +6,8 @@ is a legal document that allows you to name the peron(s) who will manage your fi
 a statutory durable power of attorney form, and the one used here is based on Texas law. Please note that the website is for demonstration
 purposes only and should not be relied upon for creating any binding legal documents.
 
+* Built using the MERN stack (MongoDB, Express, React, and Node.js).
+
 Login
 =====
 
