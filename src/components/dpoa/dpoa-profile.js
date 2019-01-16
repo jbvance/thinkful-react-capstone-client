@@ -9,7 +9,7 @@ export const DpoaProfile = props => {
   return (
     <div className="card">
       <div className="card-heading">
-        <h3>Step 1: Enter you contact information</h3>
+        <h3>Step 1: Enter your contact information</h3>
         <p>This information will be used to identify you as the principal (the person creating the power of attorney).</p>
       </div>
       <form className="card" onSubmit={handleSubmit}>
