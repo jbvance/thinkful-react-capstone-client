@@ -1,39 +1,36 @@
-import React, { Component } from 'react';
+import React, { useEffect }from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setAuthError } from '../../actions/index';
 import { renderField } from '../utils';
 
-export class AuthForm extends Component {
+export const AuthForm = props => {
     
-    componentDidMount() {
-        this.props.setAuthError('');
-    } 
+    // useEffect(() => {
+    //     props.setAuthError('');        
+    // }, []);
 
-    onSubmit = (formProps) => {        
-        this.props.onSubmit(formProps, () => {                          
-            this.props.redirect();                       
+    const onSubmit = (formProps) => {        
+        props.onSubmit(formProps, () => {                          
+            props.redirect();                       
         });        
     };         
-                                        
-    render() {
-
+                                           
         // handleSubmit is provided to props by redux form
-        const { handleSubmit } = this.props;                 
+        const { handleSubmit } = props;                 
         return (                      
             <div>
                                  
-                {this.props.errorMessage && <div className="alert alert-danger alert-danger-box alert-center">{this.props.errorMessage}</div>}
-                <form className="card card-signin" onSubmit={handleSubmit(this.onSubmit)}>  
-                    <h1 className="title-header">{this.props.title}</h1>              
+                {props.errorMessage && <div className="alert alert-danger alert-danger-box alert-center">{props.errorMessage}</div>}
+                <form className="card card-signin" onSubmit={handleSubmit(onSubmit)}>  
+                    <h1 className="title-header">{props.title}</h1>              
                     <Field 
                         name="email"
                         id="email"
                         label="Email"
                         type="text"
-                        component={renderField}
-                        validate={this.email}
+                        component={renderField}                        
                         autoComplete="none"
                     />                                                       
                         <Field 
@@ -46,7 +43,7 @@ export class AuthForm extends Component {
                         />                                                    
                     <div className="row">
                         <div className="col-100">
-                            <button className="btn btn-submit btn-login">{this.props.buttonText}</button>
+                            <button className="btn btn-submit btn-login">{props.buttonText}</button>
                         </div>                            
                     </div> 
                     <div style={{textAlign: 'center', fontWeight: 'bold'}}>
@@ -57,7 +54,6 @@ export class AuthForm extends Component {
                 </form>
             </div>
         );
-    }
 }
 
 const validate = values => {       

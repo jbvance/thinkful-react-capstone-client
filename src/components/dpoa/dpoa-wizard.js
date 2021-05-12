@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -7,73 +7,70 @@ import DpoaAgents from './dpoa-agents';
 import EffectiveNow from './effective-now';
 import { makeDoc, getInitialDpoaData } from '../../actions/index';
 
-export class DpoaWizard extends Component { 
+const DpoaWizard = props => { 
     
-  state = {
-    page: 1,
-    loading: false,
-    error: ''
-  };
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);  
 
-  nextPage = () => {
-    this.setState({ page: this.state.page + 1 })
+  const nextPage = () => {
+    setPage(prevState => prevState + 1);    
   }
 
-  previousPage = () => {
-    this.setState({ page: this.state.page - 1 })
+  const previousPage = () => {
+    setPage(prevState => prevState - 1);    
   }
 
-  componentDidMount = async () => {  
-    try {
-      this.setState({ loading: true });
-      //Preload the form if there is any data for the user
-      await this.props.getInitialDpoaData();   
-    } 
-    catch(err) {
-      console.error('ERROR', err.message);
+  useEffect(() => {
+    const getInitData = async () => {
+      try {
+        setLoading(true);
+        //Preload the form if there is any data for the user
+        await props.getInitialDpoaData();   
+      } 
+      catch(err) {        
+        console.error('ERROR', err.message);
+      }
+      finally {
+        setLoading(false);
+      };
     }
-   finally {
-    this.setState({loading: false });
-   }
-    
-  }
 
-sendDoc = (values) => {   
-  this.setState({ loading: true });  
-  this.props.makeDoc(values, () => {    
+    // Call async function above
+    getInitData();
+  }, []);
+
+const sendDoc = (values) => {   
+  setLoading(true);  
+  props.makeDoc(values, () => {    
     //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-    this.setState({ loading: false });
-    this.props.history.push('/results');
+    setLoading(false);
+    props.history.push('/results');
   });   
 };
-
-  render() {       
-    const onSubmit = this.sendDoc;   
-    const { page } = this.state
-    if (this.state.loading) {
+             
+    if (loading) {
       return <div className="loader"></div>
     } else
     return (
       <div>        
-        {page === 1 && <DpoaProfile onSubmit={this.nextPage} />}
+        {page === 1 && <DpoaProfile onSubmit={nextPage} />}
         {page === 2 && (
           <DpoaAgents
-            previousPage={this.previousPage}
-            onSubmit={this.nextPage}
+            previousPage={previousPage}
+            onSubmit={nextPage}
           />
         )}
         
         {page === 3 && (
           <EffectiveNow
-            previousPage={this.previousPage}
-            onSubmit={onSubmit}
+            previousPage={previousPage}
+            onSubmit={sendDoc}
           />
         )}
                    
       </div>
      
     )
-  }
 }
 
 const mapStateToProps = state => ({
@@ -81,14 +78,14 @@ const mapStateToProps = state => ({
   initialValues: state.docx.initialDpoaData
 });
 
-DpoaWizard = reduxForm({
+const ReduxFormDpoaWizard = reduxForm({
   form: 'wizard',     
   enableReinitialize: true
 })(DpoaWizard)
 
-DpoaWizard.propTypes = {
+ReduxFormDpoaWizard.propTypes = {
   getInitialDpoaData: PropTypes.func.isRequired,
   makeDoc: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { makeDoc, getInitialDpoaData })(DpoaWizard);
+export default connect(mapStateToProps, { makeDoc, getInitialDpoaData })(ReduxFormDpoaWizard);

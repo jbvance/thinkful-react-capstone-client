@@ -1,27 +1,17 @@
-import React, {
-    Component
-} from 'react';
+import React, { useEffect } from 'react';
 import {
     connect
 } from 'react-redux';
 export default ChildComponent => {
-    class ComposedComponent extends Component {
-        // Our component just got rendered
-        componentDidMount() {
-            this.shouldNavigateAway();
-        }
-        // Our component just got updated
-        componentDidUpdate() {
-            this.shouldNavigateAway();
-        }
-        shouldNavigateAway() {
-            if (!this.props.auth) {
-                this.props.history.push('/');
+    const ComposedComponent = (props) => {
+        
+        useEffect(() => {
+            if (!props.auth) {
+                props.history.push('/');
             }
-        }
-        render() {
-            return <ChildComponent { ...this.props } />;
-        }
+        }, []);
+              
+        return <ChildComponent { ...props } />;
     }
 
     function mapStateToProps(state) {
