@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
